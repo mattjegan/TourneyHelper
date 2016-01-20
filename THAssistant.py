@@ -14,7 +14,6 @@ class THAssistant:
         self.payablePlayers = int(payable)
 
         self.distFuncs = {"uniform" : self.uniform,
-                          "linear" : self.linear,
                           "geometric" : self.geometric,
                           "lognormal" : self.lognormal,
                           "exponential" : self.exponential}
@@ -39,16 +38,21 @@ class THAssistant:
             table.append(val)
             remaining -= val
         table[0] += remaining
-        
-        return table
 
-    def linear(self):
-        ## y = 1  - (1/players)position
-        pass
+        return table
 
     def geometric(self):
         ## y = 1/(2^position)
-        pass
+        remaining = self.prizepool
+        table = []
+
+        for p in xrange(self.payablePlayers):
+            val = int(self.prizepool * (1.0/(2.0**(p+1))))
+            table.append(val)
+            remaining -= val
+        table[0] += remaining
+
+        return table
 
     def lognormal(self):
         pass

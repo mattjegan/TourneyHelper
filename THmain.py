@@ -9,9 +9,9 @@
 from THAssistant import THAssistant
 
 def main():
-    director = THAssistant(10, 100, 3)
+    director = THAssistant(10, 100, 5)
     total = 0
-    for e, pos in enumerate(director.prizeDist("uniform")):
+    for e, pos in enumerate(director.prizeDist("geometric")):
         print e, ":", pos
         total += pos
     print "Total:", total
