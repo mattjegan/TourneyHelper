@@ -1,0 +1,9 @@
+=== TourneyHelper ===
+This is a poker tournament helper designed for home game and similar settings.
+
+== Features ==
+- Timer
+- Blinds Structure
+- Initial Chip Count Calculator
+- Initial Chip Distribution
+- Pot Distribution Calculator
