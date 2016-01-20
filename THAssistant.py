@@ -71,6 +71,7 @@ class THAssistant:
         return table
 
     def exponential(self):
+        ## y = rate * e ^ (-rate * x)
         remaining = self.prizepool
         table = []
 
