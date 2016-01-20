@@ -71,4 +71,16 @@ class THAssistant:
         return table
 
     def exponential(self):
-        pass
+        remaining = self.prizepool
+        table = []
+
+        rateParam = 0.7
+
+        for p in xrange(self.payablePlayers):
+            val = int(self.prizepool * rateParam * math.exp(-rateParam * (p + 1)))
+            table.append(val)
+            remaining -= val
+        table[0] += remaining
+
+        return table
+

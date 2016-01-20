@@ -11,7 +11,7 @@ from THAssistant import THAssistant
 def main():
     director = THAssistant(100, 1000, 7)
     total = 0
-    for e, pos in enumerate(director.prizeDist("lognormal")):
+    for e, pos in enumerate(director.prizeDist("exponential")):
         print e+1, ":", pos
         total += pos
     print "Total:", total
