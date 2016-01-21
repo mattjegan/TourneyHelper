@@ -8,10 +8,11 @@
 import math
 
 class THAssistant:
-    def __init__(self, players, prizepool, payable):
-        self.players = int(players)
-        self.prizepool = int(prizepool)
-        self.payablePlayers = int(payable)
+    def __init__(self, players=None, prizepool=None, payable=None):
+        if players and prizepool and payable:
+            self.players = int(players)
+            self.prizepool = int(prizepool)
+            self.payablePlayers = int(payable)
 
         self.distFuncs = {"uniform" : self.uniform,
                           "geometric" : self.geometric,
@@ -20,22 +21,17 @@ class THAssistant:
 
     def blindsStructure(self, startingStack, hours=None):
         bb = int(1.0/50.0 * startingStack)
-        sb = float(bb)/2.0
+        sb = int(float(bb)/2.0)
 
-        table = []
+        table = [(sb, bb)]
 
         ## Blind Period in minutes
         blindPeriod = 0
 
-        if hours == None:
+        if hours == None or hours == 0:
 
             ## Standard blind period time
             blindPeriod = 20
-
-            while bb <= startingStack:
-                table.append((sb, bb))
-                sb = bb
-                bb *= 2
 
         else:
 
@@ -45,14 +41,14 @@ class THAssistant:
             ## Figure out how long each blind period should be
             blindPeriod = float(hours) * 60.0 / float(numLevels)
 
-            ## Generate blind levels
-            while bb <= startingStack:
-                table.append((sb, bb))
-                sb = bb
-                bb *= 2
+        ## Generate blind levels
+        while bb <= startingStack:
+            sb = bb
+            bb *= 2
+            table.append((sb, bb))
 
 
-        return table, blindPeriod
+        return table, int(blindPeriod)
 
     def prizeDist(self, dist):
         if isinstance(dist, str):

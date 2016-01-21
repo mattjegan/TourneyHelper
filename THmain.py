@@ -12,9 +12,10 @@ def main():
     print "Welcome to TourneyHelper"
     print "What would you like to do?"
     print "\t1 - Calculate Prize Pool Distribution"
+    print "\t2 - Calculate Blinds Structure"
     command = int(raw_input())
 
-    {1:ppDist}[command]()
+    {1:ppDist, 2:blindsStruct}[command]()
 
 def ppDist():
 
@@ -37,5 +38,23 @@ def ppDist():
         print e+1, ":", pos
         total += pos
     print "Total:", total
+
+def blindsStruct():
+    
+    startingStack = int(raw_input("What is your starting stack: "))
+    hours = int(raw_input("How long do you want the game to go for in hours? Enter 0 if unsure: "))
+
+    director = THAssistant()
+
+    print ""
+    print "Blinds Structure"
+    
+    structure, period = director.blindsStructure(startingStack, hours)
+
+    for e, blinds in enumerate(structure):
+        print e+1, ":", blinds
+
+    print "Each blind period should go for", period, "minutes."
+
 
 if __name__ == "__main__": main()
