@@ -22,15 +22,37 @@ class THAssistant:
         bb = int(1.0/50.0 * startingStack)
         sb = float(bb)/2.0
 
-        table = [(sb, bb)]
+        table = []
+
+        ## Blind Period in minutes
+        blindPeriod = 0
 
         if hours == None:
-            sb = bb
-            bb *= 2
-            table.append((sb, bb))
-        
+
+            ## Standard blind period time
+            blindPeriod = 20
+
+            while bb <= startingStack:
+                table.append((sb, bb))
+                sb = bb
+                bb *= 2
+
         else:
-            pass
+
+            ## Get the amount of levels to generate
+            numLevels = math.log(float(startingStack) / float(bb), 2)
+
+            ## Figure out how long each blind period should be
+            blindPeriod = float(hours) * 60.0 / float(numLevels)
+
+            ## Generate blind levels
+            while bb <= startingStack:
+                table.append((sb, bb))
+                sb = bb
+                bb *= 2
+
+
+        return table, blindPeriod
 
     def prizeDist(self, dist):
         if isinstance(dist, str):
