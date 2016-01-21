@@ -18,6 +18,20 @@ class THAssistant:
                           "lognormal" : self.lognormal,
                           "exponential" : self.exponential}
 
+    def blindsStructure(self, startingStack, hours=None):
+        bb = int(1.0/50.0 * startingStack)
+        sb = float(bb)/2.0
+
+        table = [(sb, bb)]
+
+        if hours == None:
+            sb = bb
+            bb *= 2
+            table.append((sb, bb))
+        
+        else:
+            pass
+
     def prizeDist(self, dist):
         if isinstance(dist, str):
             if dist in self.distFuncs:
@@ -84,4 +98,3 @@ class THAssistant:
         table[0] += remaining
 
         return table
-
