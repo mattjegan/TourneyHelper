@@ -58,6 +58,16 @@ def blindsStruct():
     print "Each blind period should go for", period, "minutes."
 
 def stackSize():
-    pass
+
+    bigBlind = int(raw_input("What is the initial big blind: "))
+    chipValueArr = map(int, raw_input("What are your chip values? Separated by spaces: ").split(" "))
+
+    director = THAssistant()
+
+    print ""
+    print "Initial Stack Size Calculator"
+
+    stackSize = director.stackCount(bigBlind, chipValueArr)
+    print "With a starting BB of", bigBlind, "the stack should be", stackSize
 
 if __name__ == "__main__": main()
