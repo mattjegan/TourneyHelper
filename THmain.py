@@ -13,9 +13,10 @@ def main():
     print "What would you like to do?"
     print "\t1 - Calculate Prize Pool Distribution"
     print "\t2 - Calculate Blinds Structure"
+    print "\t3 - Initial Stack Size Calculator"
     command = int(raw_input())
 
-    {1:ppDist, 2:blindsStruct}[command]()
+    {1:ppDist, 2:blindsStruct, 3:stackSize}[command]()
 
 def ppDist():
 
@@ -56,5 +57,7 @@ def blindsStruct():
 
     print "Each blind period should go for", period, "minutes."
 
+def stackSize():
+    pass
 
 if __name__ == "__main__": main()

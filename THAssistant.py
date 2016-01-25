@@ -50,6 +50,26 @@ class THAssistant:
 
         return table, int(blindPeriod)
 
+    def stackCount(self, bigBlind, chipValueArr):
+
+        ## Assume the stack should be 100 big blinds
+        stackCount = 100 * int(bigBlind)
+        
+        minVal = min(chipValueArr)
+
+        ## If the stack is not divisible by the smallest chip then set it to
+        ## the closest number divisible by the smallest chip
+        if not stackCount % minVal:
+            highVal = (int(stackCount / minVal) + 1) * minVal
+            lowVal = int(stackCount / minVal) * minVal
+
+            if abs(stackCount - highVal) < abs(stackCount - lowVal):
+                stackCount = highVal
+            else:
+                stackCount = lowVal
+
+        return stackCount
+
     def prizeDist(self, dist):
         if isinstance(dist, str):
             if dist in self.distFuncs:
