@@ -70,8 +70,30 @@ class THAssistant:
 
         return stackCount
 
-    def chipDist(self):
-        pass
+    def chipDist(self, stackSize, chipValueArr):
+        table = {}
+
+        ## Get an initial estimated distribution
+        for i in xrange(len(chipValueArr)):
+            val = int(stackSize * (1.0/(2.0**(i+1))))
+            val -= val % chipValueArr[::-1][i]
+            table[chipValueArr[::-1][i]] = val
+            stackSize -= val
+
+        ## Spread extras in greedy manner
+        while stackSize > 0:
+            for chip in table:
+                if chip <= stackSize:
+                    table[chip] += chip
+                    stackSize -= chip
+
+        ## Convert table into array of tuples
+        finalTable = []
+        for chip in sorted(table.keys()):
+            finalTable.append([chip, table[chip]])
+
+        return finalTable
+
 
     def prizeDist(self, dist):
         if isinstance(dist, str):

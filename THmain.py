@@ -81,7 +81,7 @@ def chipDist():
     print ""
     print "Initial Chip Distribution"
 
-    for val, count in enumerate(director.chipDist(chipValueArr)):
+    for (val, count) in director.chipDist(stackSize, chipValueArr):
         print val, ":", count
 
 if __name__ == "__main__": main()
