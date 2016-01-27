@@ -14,9 +14,10 @@ def main():
     print "\t1 - Calculate Prize Pool Distribution"
     print "\t2 - Calculate Blinds Structure"
     print "\t3 - Initial Stack Size Calculator"
+    print "\t4 - Initial Chip Distribution"
     command = int(raw_input())
 
-    {1:ppDist, 2:blindsStruct, 3:stackSize}[command]()
+    {1:ppDist, 2:blindsStruct, 3:stackSize, 4:chipDist}[command]()
 
 def ppDist():
 
@@ -69,5 +70,18 @@ def stackSize():
 
     stackSize = director.stackCount(bigBlind, chipValueArr)
     print "With a starting BB of", bigBlind, "the stack should be", stackSize
+
+def chipDist():
+    
+    stackSize = int(raw_input("What is the stack size: "))
+    chipValueArr = map(int, raw_input("What are your chip values? Separated by spaces: ").split(" "))
+
+    director = THAssistant()
+
+    print ""
+    print "Initial Chip Distribution"
+
+    for val, count in enumerate(director.chipDist(chipValueArr)):
+        print val, ":", count
 
 if __name__ == "__main__": main()

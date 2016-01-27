@@ -70,6 +70,9 @@ class THAssistant:
 
         return stackCount
 
+    def chipDist(self):
+        pass
+
     def prizeDist(self, dist):
         if isinstance(dist, str):
             if dist in self.distFuncs:
