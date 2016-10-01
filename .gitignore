@@ -1,0 +1,10 @@
+__pycache__/*
+.idea/
+*.egg-info/
+.DS_Store
+*.pyc
+MANIFEST
+dist/*
+.cache/*
+.coverage
+build/*

@@ -74,7 +74,7 @@ class THAssistant:
         table = {}
 
         ## Get an initial estimated distribution
-        for i in xrange(len(chipValueArr)):
+        for i in range(len(chipValueArr)):
             val = int(stackSize * (1.0/(2.0**(i+1))))
             val -= val % chipValueArr[::-1][i]
             table[chipValueArr[::-1][i]] = val
@@ -100,10 +100,10 @@ class THAssistant:
             if dist in self.distFuncs:
                 return self.distFuncs[dist]()
             else:
-                print "ValueError: dist not a valid value"
-                print "Please choose [linear, quadratic, hyperbolic, exponential]"
+                print("ValueError: dist not a valid value")
+                print("Please choose [linear, quadratic, hyperbolic, exponential]")
         else:
-            print "TypeError: dist is not a string"
+            print("TypeError: dist is not a string")
 
     def uniform(self):
         ## All the same, prizepool/payable
@@ -111,7 +111,7 @@ class THAssistant:
         remaining = self.prizepool
         table = []
 
-        for p in xrange(self.payablePlayers):
+        for p in range(self.payablePlayers):
             table.append(val)
             remaining -= val
         table[0] += remaining
@@ -139,7 +139,7 @@ class THAssistant:
         scale = 0.6
         location = 0.999
 
-        for p in xrange(self.payablePlayers):
+        for p in range(self.payablePlayers):
             val = int(self.prizepool * ((1/((p+1)*scale*math.sqrt(2*math.pi))) * math.exp(-(math.log((p+1) - location) ** 2)/(scale * math.sqrt(2)))))
             table.append(val)
             remaining -= val
@@ -154,7 +154,7 @@ class THAssistant:
 
         rateParam = 0.7
 
-        for p in xrange(self.payablePlayers):
+        for p in range(self.payablePlayers):
             val = int(self.prizepool * rateParam * math.exp(-rateParam * (p + 1)))
             table.append(val)
             remaining -= val
